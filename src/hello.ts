@@ -1,6 +1,5 @@
 
-export class Hello {
-	constructor() {
-		console.log("constructor");
-	}
+function hello(compiler: string) : void {
+    console.log(`Hello from ${compiler}`);
 }
+hello("TypeScript");
