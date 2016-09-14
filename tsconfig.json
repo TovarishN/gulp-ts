@@ -10,8 +10,7 @@
 		"noImplicitAny": true,
 		"noFallthroughCasesInSwitch": true,
 		"noEmitOnError": true,
-		"jsx": "react",
-		"types": ["node", "gulp"]
+		"jsx": "react"
 	},
 	"exclude": [
 		"node_modules",

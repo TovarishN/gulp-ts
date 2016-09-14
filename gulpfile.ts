@@ -1,7 +1,13 @@
-'use strict';
-
 import * as gulp from 'gulp';
+import { Gulpclass, Task } from 'gulpclass';
 
-gulp.task('build', () => {
-	console.log("build");
-});
+@Gulpclass()
+export class Gulpfile {
+
+	@Task()
+	build()	{
+		console.log("build start");
+	}
+
+}
+
