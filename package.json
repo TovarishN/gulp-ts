@@ -1,0 +1,28 @@
+{
+  "name": "gulp-ts",
+  "version": "1.0.0",
+  "description": "gulp typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TovarishN/gulp-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TovarishN/gulp-ts/issues"
+  },
+  "homepage": "https://github.com/TovarishN/gulp-ts#readme",
+  "devDependencies": {
+    "@types/gulp": "^3.8.31",
+    "@types/node": "^6.0.38",
+    "gulp": "^3.9.1",
+    "ts-node": "^1.3.0",
+    "typescript": "^2.1.0-dev.20160914"
+  },
+  "dependencies": {}
+}

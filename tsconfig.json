@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"declaration": false,
+		"noImplicitReturns": true,
+		"noImplicitAny": true,
+		"noFallthroughCasesInSwitch": true,
+		"noEmitOnError": true,
+		"jsx": "react",
+		"types": ["node", "gulp"]
+	},
+	"exclude": [
+		"node_modules",
+		"dist",
+		"tmp"
+	],
+	"filesGlob": [
+		"./**/*.ts",
+		"./**/*.tsx",
+		"!./node_modules/**/*"
+	]
+}
