@@ -16,10 +16,5 @@
 		"node_modules",
 		"dist",
 		"tmp"
-	],
-	"filesGlob": [
-		"./**/*.ts",
-		"./**/*.tsx",
-		"!./node_modules/**/*"
 	]
 }

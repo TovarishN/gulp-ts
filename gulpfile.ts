@@ -1,57 +1,47 @@
 import * as gulp from 'gulp';
 import { Gulpclass, Task, SequenceTask } from 'gulpclass';
 import * as del from 'del';
-import * as ts from 'gulp-typescript'
+import * as gts from 'gulp-typescript';
 
+declare module "gulp-typescript" {
+	interface CompileStream extends NodeJS.ReadWriteStream { } // Either gulp or gulp-typescript has some odd typings which don't reflect reality, making this required
+}
 
 @Gulpclass()
 export class Gulpfile {
 
-	
-	constructor(){
-
+	@Task()
+	clean(cb: Function) {
+		return del([ './dist/**' ], cb);
 	}
-	
 
-    @Task()
-    clean(cb: Function) {
-        return del(['./dist/**'], cb);
-    }
- 
-    @Task()
-    copyFiles() {
-        return gulp.src(['./README.md'])
-            .pipe(gulp.dest('./dist'));
-    }
- 
-    @Task('copy-source-files') // you can specify custom task name if you need 
-    copySourceFiles() {
-        return gulp.src(['./src/**.js'])
-            .pipe(gulp.dest('./dist/src'));
-    }
-	
+	@Task()
+	copyFiles() {
+		return gulp.src([ './README.md' ])
+			.pipe(gulp.dest('./dist'));
+	}
+
+	@Task('copy-source-files') // you can specify custom task name if you need
+	copySourceFiles() {
+		return gulp.src([ './src/**.js' ])
+			.pipe(gulp.dest('./dist/src'));
+	}
+
 	@Task()
 	compile() {
-		let tsProject : ts.Project = ts.createProject("./tsconfig.json");
-
-		// return gulp
-		// 	.src('src/**/*.ts')
-        // 	.pipe(ts(tsProject}))
-        // 	.pipe(gulp.dest('.tmp'));
-
-		return tsProject.src()
-			.pipe(ts(tsProject));
+		let proj = gts.createProject('./tsconfig.json')
+		return gulp
+			.src('src/**/*.ts')
+			.pipe(gts(proj))
+			.pipe(gulp.dest('.tmp'));
 	}
 
-    @SequenceTask() // this special annotation using "run-sequence" module to run returned tasks in sequence 
-    build() {
-        return ['compile'];
-    }
- 
-    @Task()
-    default() { // because this task has "default" name it will be run as default gulp task 
-        return ['build'];
-    }
+	@SequenceTask()
+	// this special annotation using "run-sequence" module to run returned tasks in sequence
+	build() { return [ 'compile' ]; }
 
+	@Task()
+	// because this task has "default" name it will be run as default gulp task
+	default() { return [ 'build' ]; }
 }
 
