@@ -21,17 +21,11 @@ export class Gulpfile {
 			.pipe(gulp.dest('./dist'));
 	}
 
-	@Task('copy-source-files') // you can specify custom task name if you need
-	copySourceFiles() {
-		return gulp.src([ './src/**.js' ])
-			.pipe(gulp.dest('./dist/src'));
-	}
-
 	@Task()
 	compile() {
 		let proj = gts.createProject('./tsconfig.json')
 		return gulp
-			.src('src/**/*.ts')
+			.src('src/**/*.{ts,tsx}')
 			.pipe(gts(proj))
 			.pipe(gulp.dest('.tmp'));
 	}
