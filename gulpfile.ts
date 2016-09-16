@@ -1,7 +1,7 @@
-import * as gulp from 'gulp';
-import { Gulpclass, Task, SequenceTask } from 'gulpclass';
-import * as del from 'del';
-import * as gts from 'gulp-typescript';
+import * as gulp from 'gulp'; 								// npm i @types/gulp --save-dev
+import { Gulpclass, Task, SequenceTask } from 'gulpclass'; 	// npm i gulpclass --save-dev
+import * as del from 'del'; 								// npm i @types/del --save-dev
+import * as gts from 'gulp-typescript';						// npm i gulp-typescript --save-dev
 
 declare module "gulp-typescript" {
 	interface CompileStream extends NodeJS.ReadWriteStream { } // Either gulp or gulp-typescript has some odd typings which don't reflect reality, making this required
@@ -12,7 +12,7 @@ export class Gulpfile {
 
 	@Task()
 	clean(cb: Function) {
-		return del([ './dist/**' ], cb);
+		return del([ './.tmp/**' ], cb);
 	}
 
 	@Task()

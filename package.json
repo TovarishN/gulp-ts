@@ -21,7 +21,6 @@
     "@types/del": "^2.2.30",
     "@types/gulp": "^3.8.31",
     "@types/node": "^6.0.38",
-    "@types/react": "^0.14.34",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.13.6",
@@ -30,8 +29,6 @@
     "typescript": "^2.1.0-dev.20160914"
   },
   "dependencies": {
-    "@types/react": "^0.14.34",
-    "@types/react-dom": "^0.14.16",
     "react": "^15.3.1",
     "react-dom": "^15.3.1"
   }
