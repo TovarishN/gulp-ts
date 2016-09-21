@@ -21,6 +21,8 @@
     "@types/del": "^2.2.30",
     "@types/gulp": "^3.8.31",
     "@types/node": "^6.0.38",
+    "@types/react": "^0.14.35",
+    "@types/react-dom": "^0.14.17",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-typescript": "^2.13.6",
