@@ -3,10 +3,6 @@ import { Gulpclass, Task, SequenceTask } from 'gulpclass'; 	// npm i gulpclass -
 import * as del from 'del'; 								// npm i @types/del --save-dev
 import * as gts from 'gulp-typescript';						// npm i gulp-typescript --save-dev
 
-declare module "gulp-typescript" {
-	interface CompileStream extends NodeJS.ReadWriteStream { } // Either gulp or gulp-typescript has some odd typings which don't reflect reality, making this required
-}
-
 @Gulpclass()
 export class Gulpfile {
 
@@ -23,10 +19,10 @@ export class Gulpfile {
 
 	@Task()
 	compile() {
-		let proj = gts.createProject('./tsconfig.json')
+		//let proj = gts.createProject('./tsconfig.json')
 		return gulp
 			.src('src/**/*.{ts,tsx}')
-			.pipe(gts(proj))
+			.pipe(gts( { jsx:"react" } ))
 			.pipe(gulp.dest('.tmp'));
 	}
 
