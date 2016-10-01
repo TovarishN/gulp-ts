@@ -5,12 +5,17 @@
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"declaration": false,
+		"declaration": true,
 		"noImplicitReturns": true,
 		"noImplicitAny": true,
 		"noFallthroughCasesInSwitch": true,
 		"noEmitOnError": true,
-		"jsx": "react"		
+		"jsx": "react"
+		// "diagnostics": true,
+		// "listFiles": true,
+		// "pretty": true,
+		// "sourceMap": true,
+		// "outDir": "${workspaceRoot}/.compile/"
 	},
 	"exclude": [
 		"node_modules",

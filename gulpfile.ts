@@ -3,35 +3,43 @@ import { Gulpclass, Task, SequenceTask } from 'gulpclass'; 	// npm i gulpclass -
 import * as del from 'del'; 								// npm i @types/del --save-dev
 import * as gts from 'gulp-typescript';						// npm i gulp-typescript --save-dev
 
+let config = {
+	src : 'src/**/*.{ts,tsx}',
+	destDir: './dist',
+	tempDir: './.tmp',
+	tmp: './.tmp/**',
+	dst: './dist/**'
+};
+
 @Gulpclass()
 export class Gulpfile {
 
+	private tsProject = gts({ jsx:"react" });
+
 	@Task()
 	clean(cb: Function) {
-		return del([ './.tmp/**' ], cb);
+		console.log(`clean ${config.tmp}`);
+		return del([ config.tmp, config.dst ], cb);
 	}
 
 	@Task()
-	copyFiles() {
-		return gulp.src([ './README.md' ])
-			.pipe(gulp.dest('./dist'));
+	copyTmpToDest() {
+		return gulp.src([ config.tmp ])
+			.pipe(gulp.dest(config.destDir));
 	}
 
 	@Task()
 	compile() {
-		//let proj = gts.createProject('./tsconfig.json')
 		return gulp
-			.src('src/**/*.{ts,tsx}')
-			.pipe(gts( { jsx:"react" } ))
-			.pipe(gulp.dest('.tmp'));
+			.src(config.src)
+			.pipe(this.tsProject)
+			.pipe(gulp.dest(config.tempDir));
 	}
 
-	@SequenceTask()
-	// this special annotation using "run-sequence" module to run returned tasks in sequence
-	build() { return [ 'compile' ]; }
-
-	@Task()
-	// because this task has "default" name it will be run as default gulp task
-	default() { return [ 'build' ]; }
+	@SequenceTask()	build() { return [ 'compile', 'copyTmpToDest' ]; }
+	@SequenceTask()	rebuild() { return [ 'clean', 'build' ]; }
+	
+	@Task()	watch() { gulp.watch(config.src, ['compile']); }
+	@Task() default() { return [ 'build' ]; }
 }
 
